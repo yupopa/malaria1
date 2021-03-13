@@ -36,14 +36,10 @@ class Predict:
 
     def display_output(self):
         st.image(self.img.to_thumb(500,500), caption='Uploaded Image')
+         pred, pred_idx, probs = self.learn_inference.predict(self.img)
+         st.write(f'Prediction: {pred} red blood cell; Probability: {probs[pred_idx]:.04f}')
 
-    def get_prediction(self):
-
-        if st.button('Classify'):
-            pred, pred_idx, probs = self.learn_inference.predict(self.img)
-            st.write(f'Prediction: {pred} red blood cell; Probability: {probs[pred_idx]:.04f}')
-        else: 
-            st.write("Click the button to get prediction result for the uploaded image") 
+ 
 
 if __name__=='__main__':
     predictor = Predict(filename)
